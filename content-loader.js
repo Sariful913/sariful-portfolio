@@ -71,11 +71,14 @@
   function slugify(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
   function fileSlug(it){ var f = String(it.pdf_file || "").split("?")[0].split("/").pop().replace(/\.pdf$/i, ""); return slugify(f); }
   function slugOf(it, i){ return slugify(it.slug) || fileSlug(it) || slugify(it.title) || ("pdf-" + (i + 1)); }
+  /* unique link per item - if two items would get the same link, the later one gets -2, -3 ... */
+  function slugList(items){ var used = {}; return items.map(function(it, i){ var s = slugOf(it, i), b = s, n = 2; while(used[s]){ s = b + "-" + n; n++; } used[s] = 1; return s; }); }
 
   function buildResources(items){
     var grid = document.querySelector("#resources .grid-2");
     if(!grid) return;
     var cards = grid.querySelectorAll(".res-card");
+    var slugs = slugList(items);
     var freeTpl = null, paidTpl = null;
     cards.forEach(function(c){
       var a = c.querySelector("a.btn");
@@ -102,7 +105,7 @@
         d.style.webkitLineClamp = "4"; d.style.overflow = "hidden";
       }
       /* the whole card opens the resource's own page */
-      var page = "/pdf/" + slugOf(it, idx);
+      var page = "/pdf/" + slugs[idx];
       card.setAttribute("data-page", page);
       card.setAttribute("role", "link");
       card.setAttribute("tabindex", "0");

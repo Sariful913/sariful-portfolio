@@ -77,6 +77,7 @@ function slugify(s){
 /* Same rule as content-loader.js: own slug, else English title, else pdf-N */
 function fileSlug(it){ var f = String(it.pdf_file || "").split("?")[0].split("/").pop().replace(/\.pdf$/i, ""); return slugify(f); }
 function slugOf(it, i){ return slugify(it.slug) || fileSlug(it) || slugify(it.title) || ("pdf-" + (i + 1)); }
+function slugList(items){ var used = {}; return items.map(function(it, i){ var s = slugOf(it, i), b = s, n = 2; while(used[s]){ s = b + "-" + n; n++; } used[s] = 1; return s; }); }
 
 /* Body text: blank line = new paragraph, a line starting with "## " = sub-heading */
 function render(body){
@@ -117,7 +118,7 @@ function showList(items, note){
   var html = (note ? "<p class='lead'>" + esc(note) + "</p>" : "") + "<h1>রিসোর্স</h1><div class='list'>";
   items.forEach(function(it, i){
     var label = it.kind === "paid" ? (it.price || "Premium") : "FREE";
-    html += "<a href='/pdf/" + esc(slugOf(it, i)) + "'>" + esc(it.title) + " <span style='color:var(--muted);font-weight:500'>(" + esc(label) + ")</span> &rarr;</a>";
+    html += "<a href='/pdf/" + esc(slugList(items)[i]) + "'>" + esc(it.title) + " <span style='color:var(--muted);font-weight:500'>(" + esc(label) + ")</span> &rarr;</a>";
   });
   app.innerHTML = html + "</div>";
 }
@@ -190,7 +191,7 @@ fetch("/content/resources.json", {cache: "no-store"}).then(function(r){
   var want = current();
   if(!want){ showList(items); return; }
   var found = null;
-  items.forEach(function(it, i){ if(!found && slugOf(it, i) === want) found = it; });
+  var sl = slugList(items); items.forEach(function(it, i){ if(!found && sl[i] === want) found = it; });
   if(found) showItem(found);
   else showList(items, "এই লিংকের PDF পাওয়া যায়নি - নিচের তালিকা থেকে বেছে নিন।");
 }).catch(function(){
