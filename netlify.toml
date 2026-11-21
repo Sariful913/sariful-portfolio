@@ -16,3 +16,18 @@
 [[edge_functions]]
   path = "/pdf/*"
   function = "pdf-meta"
+
+# Blog posts: sariful.netlify.app/blog/<slug> opens the blog reading page
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog.html"
+  status = 200
+
+[[edge_functions]]
+  path = "/blog/*"
+  function = "blog-meta"

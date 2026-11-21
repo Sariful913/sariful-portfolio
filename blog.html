@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog - MD Sariful Islam</title>
+<meta name="description" content="MD Sariful Islam-এর ব্লগ - AI ভিডিও, ওয়েবসাইট আর অটোমেশনের বাংলা গাইড।">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blog - MD Sariful Islam">
+<meta property="og:description" content="AI ভিডিও, ওয়েবসাইট আর অটোমেশনের বাংলা গাইড।">
+<meta property="og:image" content="https://sariful.netlify.app/images/blog-1.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050B16;--panel:#0A1830;--cyan:#22D3EE;--blue:#00BFFF;--violet:#818CF8;--text:#EFF7FF;--muted:#9DB4C8;--line:rgba(34,211,238,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text)}
+body{font-family:"Hind Siliguri","Inter",system-ui,sans-serif;line-height:1.75;min-height:100vh;
+  background:radial-gradient(900px 500px at 15% -10%,rgba(0,191,255,.14),transparent 60%),radial-gradient(700px 400px at 100% 0%,rgba(129,140,248,.12),transparent 60%),var(--bg)}
+a{color:var(--cyan)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:900px;margin:0 auto;padding:18px 20px}
+.brand{font-family:Inter,sans-serif;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none}
+.brand span{color:var(--blue)}
+.back{color:var(--muted);text-decoration:none;font-size:15px}
+.back:hover{color:var(--cyan)}
+main{max-width:900px;margin:0 auto;padding:10px 20px 60px}
+.card{background:linear-gradient(180deg,rgba(10,24,48,.92),rgba(10,24,48,.7));border:1px solid var(--line);border-radius:20px;padding:30px 26px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.tag{display:inline-block;font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-bottom:14px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.3;margin-bottom:12px}
+.lead{color:var(--muted);font-size:18px;margin-bottom:22px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 26px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:Inter,"Hind Siliguri",sans-serif;font-weight:700;font-size:16px;text-decoration:none;border-radius:12px;padding:13px 22px;border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#031020;box-shadow:0 8px 24px rgba(0,191,255,.35)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-wa{background:#25D366;color:#04140a}
+.article{font-size:17.5px}
+.article p{margin-bottom:16px}
+.article h2{font-size:22px;margin:26px 0 10px;color:var(--cyan)}
+.viewer{margin-top:28px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0b1424}
+.viewer-head{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-family:Inter,sans-serif;font-size:14px;color:var(--muted);border-bottom:1px solid var(--line)}
+.viewer iframe{display:block;width:100%;height:75vh;min-height:480px;border:0;background:#fff}
+.cta{margin-top:30px;padding:22px;border-radius:16px;border:1px dashed var(--line);text-align:center;color:var(--muted)}
+.cta strong{color:var(--text)}
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 26px;color:var(--muted);font-size:15px}
+.sh{font-family:Inter,"Hind Siliguri",sans-serif;font-size:14px;font-weight:600;text-decoration:none;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.sh:hover{border-color:var(--cyan);color:var(--cyan)}
+.sh.fb{border-color:rgba(24,119,242,.6)}.sh.wa{border-color:rgba(37,211,102,.6)}.sh.ms{border-color:rgba(0,132,255,.6)}
+.state{text-align:center;padding:60px 20px;color:var(--muted)}
+.list a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);font-weight:600}
+.list a:hover{color:var(--cyan)}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:20px}
+@media (max-width:560px){.card{padding:22px 16px}.btn{width:100%;justify-content:center}.viewer iframe{height:70vh}}
+
+.cover{width:100%;border-radius:16px;margin:0 0 22px;display:block;max-height:420px;object-fit:cover;border:1px solid var(--line)}
+.cmts{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.cmts h2{font-size:22px;margin-bottom:14px}
+.cmt{padding:12px 0;border-bottom:1px solid var(--line)}
+.cmt b{color:var(--text)}.cmt small{color:var(--muted);margin-left:8px}
+.cmt p{margin-top:4px;color:var(--text)}
+.muted{color:var(--muted)}
+.fform{display:grid;gap:10px;margin-top:18px}
+.fform input,.fform textarea{width:100%;font:inherit;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.fform input:focus,.fform textarea:focus{outline:none;border-color:var(--cyan)}
+.fstat{font-size:15px;color:var(--cyan)}.fstat.err{color:#fca5a5}
+.list a small{display:block;color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">SARIFUL<span>.</span></a>
+  <a class="back" href="/#blog">&larr; সব ব্লগ</a>
+</header>
+<main>
+  <div class="card" id="app"><div class="state">লোড হচ্ছে...</div></div>
+</main>
+<footer>&copy; MD Sariful Islam - AI Advertising Center</footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+"use strict";
+var WA = "8801609494024";
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBsXYRykxg5_MNj9FwlvMkaBFVDCHR1EQg",
+  authDomain: "sariful-portfolio.firebaseapp.com",
+  projectId: "sariful-portfolio",
+  storageBucket: "sariful-portfolio.firebasestorage.app",
+  messagingSenderId: "755858344350",
+  appId: "1:755858344350:web:39faad0c4756f4183b6e8f"
+};
+var db = null, authReady = null;
+try{
+  if(window.firebase){
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.firestore();
+    authReady = firebase.auth().signInAnonymously().catch(function(){ return null; });
+  }
+}catch(e){ db = null; }
+
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+function slugify(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+function slugOf(p, i){ return slugify(p.slug) || slugify(p.id) || slugify(p.title) || ("post-" + (i + 1)); }
+function slugList(items){ var used = {}; return items.map(function(it, i){ var s = slugOf(it, i), b = s, n = 2; while(used[s]){ s = b + "-" + n; n++; } used[s] = 1; return s; }); }
+function render(body){
+  return String(body || "").split(/\n\s*\n/).filter(function(p){ return p.trim(); }).map(function(p){
+    p = p.trim();
+    if(p.indexOf("## ") === 0) return "<h2>" + esc(p.slice(3)) + "</h2>";
+    return "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>";
+  }).join("");
+}
+function current(){
+  var m = location.pathname.match(/\/blog\/([^\/?#]+)/);
+  return m ? decodeURIComponent(m[1]).toLowerCase() : "";
+}
+var app = document.getElementById("app");
+
+function showList(posts, note){
+  var sl = slugList(posts);
+  var html = (note ? "<p class='lead'>" + esc(note) + "</p>" : "") + "<h1>ব্লগ</h1><div class='list'>";
+  posts.forEach(function(p, i){
+    html += "<a href='/blog/" + esc(sl[i]) + "'>" + esc(p.title) + " &rarr;" + (p.excerpt ? "<small>" + esc(p.excerpt) + "</small>" : "") + "</a>";
+  });
+  app.innerHTML = html + "</div>";
+}
+
+function shareBar(p){
+  var url = location.origin + location.pathname;
+  var u = encodeURIComponent(url), t = encodeURIComponent((p.title || "") + "\n" + url);
+  var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  var h = "<div class='share'><span>শেয়ার করুন:</span>";
+  h += "<a class='sh fb' href='https://www.facebook.com/sharer/sharer.php?u=" + u + "' target='_blank' rel='noopener'>Facebook</a>";
+  h += "<a class='sh wa' href='https://wa.me/?text=" + t + "' target='_blank' rel='noopener'>WhatsApp</a>";
+  h += "<a class='sh ms' href='" + (mobile ? ("fb-messenger://share/?link=" + u) : ("https://www.facebook.com/sharer/sharer.php?u=" + u)) + "' target='_blank' rel='noopener'>Messenger</a>";
+  h += "<button class='sh cp' type='button' data-copy='" + esc(url) + "'>লিংক কপি</button>";
+  if(navigator.share) h += "<button class='sh nt' type='button' data-native='1'>আরও...</button>";
+  return h + "</div>";
+}
+document.addEventListener("click", function(e){
+  var c = e.target.closest && e.target.closest("[data-copy]");
+  if(c){
+    var v = c.getAttribute("data-copy");
+    var done = function(){ c.textContent = "কপি হয়েছে ✓"; setTimeout(function(){ c.textContent = "লিংক কপি"; }, 2000); };
+    if(navigator.clipboard) navigator.clipboard.writeText(v).then(done, function(){ prompt("লিংক কপি করুন:", v); });
+    else { prompt("লিংক কপি করুন:", v); }
+    return;
+  }
+  var n = e.target.closest && e.target.closest("[data-native]");
+  if(n){ navigator.share({ title: document.title, url: location.origin + location.pathname }).catch(function(){}); }
+});
+
+function fmtDate(ts){
+  var d = ts && ts.toDate ? ts.toDate() : (ts ? new Date(ts) : null);
+  if(!d || isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+}
+function loadComments(postId){
+  var list = document.getElementById("cmtList");
+  if(!db){ list.innerHTML = "<p class='muted'>কমেন্ট এখন লোড করা যাচ্ছে না।</p>"; return; }
+  db.collection("comments").where("postId","==",postId).where("status","==","approved")
+    .onSnapshot(function(snap){
+      var items = [];
+      snap.forEach(function(doc){ items.push(doc.data()); });
+      items.sort(function(a,b){
+        var ta = a.createdAt && a.createdAt.toDate ? a.createdAt.toDate().getTime() : 0;
+        var tb = b.createdAt && b.createdAt.toDate ? b.createdAt.toDate().getTime() : 0;
+        return ta - tb;
+      });
+      document.getElementById("cmtCount").textContent = items.length ? "(" + items.length + ")" : "";
+      list.innerHTML = items.length ? items.map(function(c){
+        return "<div class='cmt'><b>" + esc(c.name) + "</b><small>" + esc(fmtDate(c.createdAt)) + "</small><p>" + esc(c.text) + "</p></div>";
+      }).join("") : "<p class='muted'>এখনও কোনো কমেন্ট নেই - প্রথম কমেন্টটি আপনিই করুন।</p>";
+    }, function(){ list.innerHTML = "<p class='muted'>কমেন্ট এখন লোড করা যাচ্ছে না।</p>"; });
+}
+function bindForm(postId){
+  var f = document.getElementById("cmtForm"), st = document.getElementById("cmtStatus");
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("cmtName").value.trim(), text = document.getElementById("cmtText").value.trim();
+    if(!name || !text) return;
+    var btn = f.querySelector("button[type=submit]"); btn.disabled = true;
+    var fail = function(){ btn.disabled = false; st.classList.add("err"); st.textContent = "দুঃখিত, কমেন্ট পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।"; };
+    if(!db || !authReady){ fail(); return; }
+    authReady.then(function(){
+      return db.collection("comments").add({ postId: postId, name: name, text: text, status: "pending",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    }).then(function(){
+      btn.disabled = false; document.getElementById("cmtText").value = "";
+      st.classList.remove("err"); st.textContent = "ধন্যবাদ! আপনার কমেন্ট পাওয়া গেছে - অনুমোদনের পর এখানে দেখাবে।";
+    }).catch(fail);
+  });
+}
+
+function showPost(p, i){
+  document.title = (p.title || "Blog") + " - MD Sariful Islam";
+  var postId = p.id || ("post" + (i + 1));
+  var html = "";
+  if(p.category) html += "<span class='tag'>" + esc(p.category) + "</span>";
+  html += "<h1>" + esc(p.title) + "</h1>";
+  if(p.excerpt) html += "<p class='lead'>" + esc(p.excerpt) + "</p>";
+  html += shareBar(p);
+  if(p.image) html += "<img class='cover' src='" + esc(p.image) + "' alt='" + esc(p.title) + "'>";
+  html += "<div class='article'>" + render(p.body) + "</div>";
+  html += shareBar(p);
+  html += "<div class='cmts'><h2>কমেন্ট <span id='cmtCount' style='color:var(--cyan)'></span></h2><div id='cmtList'><p class='muted'>লোড হচ্ছে...</p></div>" +
+          "<form class='fform' id='cmtForm'>" +
+          "<input id='cmtName' maxlength='60' placeholder='আপনার নাম' required>" +
+          "<textarea id='cmtText' rows='3' maxlength='1000' placeholder='আপনার কমেন্ট লিখুন...' required></textarea>" +
+          "<div><button class='btn btn-primary' type='submit'>কমেন্ট পাঠান</button></div>" +
+          "<p class='fstat' id='cmtStatus' role='status'></p></form></div>";
+  html += "<div class='cta'><strong>আপনার ব্যবসার জন্য AI ভিডিও বা AI এজেন্ট লাগবে?</strong><br>" +
+          "<a class='btn btn-wa' style='margin-top:12px' href='https://wa.me/" + WA + "' target='_blank' rel='noopener'>WhatsApp-এ কথা বলুন</a></div>";
+  app.innerHTML = html;
+  loadComments(postId);
+  bindForm(postId);
+}
+
+fetch("/content/blog-posts.json", {cache: "no-store"}).then(function(r){
+  if(!r.ok) throw new Error("HTTP " + r.status);
+  return r.json();
+}).then(function(data){
+  var posts = Array.isArray(data) ? data : (data.posts || []);
+  var want = current();
+  if(!want){ showList(posts); return; }
+  var sl = slugList(posts), idx = -1;
+  sl.forEach(function(s, i){ if(idx < 0 && s === want) idx = i; });
+  if(idx >= 0) showPost(posts[idx], idx);
+  else showList(posts, "এই লিংকের পোস্ট পাওয়া যায়নি - নিচের তালিকা থেকে বেছে নিন।");
+}).catch(function(){
+  app.innerHTML = "<div class='state'>এখন লোড করা যাচ্ছে না। একটু পরে আবার চেষ্টা করুন, অথবা <a href='/#blog'>সাইটে যান</a>।</div>";
+});
+})();
+</script>
+</body>
+</html>

@@ -29,10 +29,14 @@
     if(box) box.scrollTop = 0;
   }
 
+  function blogSlugOf(p, i){ return slugify(p.slug) || slugify(p.id) || slugify(p.title) || ("post-" + (i + 1)); }
+  function blogSlugList(items){ var used = {}; return items.map(function(it, i){ var s = blogSlugOf(it, i), b = s, n = 2; while(used[s]){ s = b + "-" + n; n++; } used[s] = 1; return s; }); }
+
   function buildBlog(posts){
     var grid = document.querySelector("#blog .grid-3");
     if(!grid) return;
     var cards = grid.querySelectorAll(".blog-card");
+    var blogSlugs = blogSlugList(posts);
     posts.forEach(function(post, i){
       var card = cards[i];
       if(!card){
@@ -48,12 +52,30 @@
       if(h) h.textContent = post.title || "";
       var ex = card.querySelector(".blog-body p.bn");
       if(ex) ex.textContent = post.excerpt || "";
+      var page = "/blog/" + blogSlugs[i];
       var btn = card.querySelector("[data-open-post]");
       if(btn){
-        var fresh = btn.cloneNode(true); /* drops the old built-in listener */
+        var fresh = btn.cloneNode(true); /* drops the old built-in listener (modal) */
         btn.parentNode.replaceChild(fresh, btn);
         fresh.setAttribute("data-open-post", post.id || ("post" + (i + 1)));
-        fresh.addEventListener("click", function(){ openPostModal(post); });
+        fresh.addEventListener("click", function(e){ e.preventDefault(); e.stopPropagation(); location.href = page; });
+        if(fresh.tagName === "A") fresh.href = page;
+      }
+      if(h && !h.querySelector("a")){
+        var ha = document.createElement("a");
+        ha.href = page; ha.textContent = h.textContent;
+        ha.style.cssText = "color:inherit;text-decoration:none";
+        h.textContent = ""; h.appendChild(ha);
+      }
+      /* the whole card opens the post's own page */
+      card.setAttribute("data-page", page);
+      card.style.cursor = "pointer";
+      if(!card._pageBound){
+        card._pageBound = true;
+        card.addEventListener("click", function(e){
+          if(e.target.closest && e.target.closest("a,button")) return;
+          location.href = card.getAttribute("data-page");
+        });
       }
     });
     while(grid.querySelectorAll(".blog-card").length > posts.length){
