@@ -68,6 +68,9 @@
       encodeURIComponent("Hi Sariful, I want to buy the " + title + " (" + price + ").");
   }
 
+  function slugify(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+  function slugOf(it, i){ return slugify(it.slug) || slugify(it.title) || ("pdf-" + (i + 1)); }
+
   function buildResources(items){
     var grid = document.querySelector("#resources .grid-2");
     if(!grid) return;
@@ -103,8 +106,9 @@
           a.textContent = "Buy via WhatsApp - " + (it.price || "");
         }else{
           a.classList.add("btn-primary");
-          a.href = (it.pdf_file || it.link || "#");
-          a.textContent = "Download Free PDF";
+          a.href = (it.pdf_file || it.link) ? ("/pdf/" + slugOf(it, idx)) : "#";
+          a.removeAttribute("target");
+          a.textContent = "Read & Download Free PDF";
         }
       }
     });
