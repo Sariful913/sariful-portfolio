@@ -30,6 +30,7 @@ collections:
             fields:
               - {label: "Post ID (post1, post2... - notun post e porer number din)", name: "id", widget: "string", required: false}
               - {label: "Title", name: "title", widget: "string"}
+              - {label: "Link name / slug (English chhoto hater, jemon: ai-video-guide) - link hobe sariful.netlify.app/blog/ei-nam", name: "slug", widget: "string", required: false}
               - {label: "Category (jemon: Guide • AI Video)", name: "category", widget: "string"}
               - {label: "Short excerpt (card e dekhabe)", name: "excerpt", widget: "text"}
               - {label: "Cover image", name: "image", widget: "image"}
