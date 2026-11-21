@@ -159,6 +159,7 @@ function fmtDate(ts){
 function loadComments(postId){
   var list = document.getElementById("cmtList");
   if(!db){ list.innerHTML = "<p class='muted'>কমেন্ট এখন লোড করা যাচ্ছে না।</p>"; return; }
+  (authReady || Promise.resolve()).then(function(){
   db.collection("comments").where("postId","==",postId).where("status","==","approved")
     .onSnapshot(function(snap){
       var items = [];
@@ -172,7 +173,8 @@ function loadComments(postId){
       list.innerHTML = items.length ? items.map(function(c){
         return "<div class='cmt'><b>" + esc(c.name) + "</b><small>" + esc(fmtDate(c.createdAt)) + "</small><p>" + esc(c.text) + "</p></div>";
       }).join("") : "<p class='muted'>এখনও কোনো কমেন্ট নেই - প্রথম কমেন্টটি আপনিই করুন।</p>";
-    }, function(){ list.innerHTML = "<p class='muted'>কমেন্ট এখন লোড করা যাচ্ছে না।</p>"; });
+    }, function(err){ if(window.console) console.warn("comments:", err && err.code, err && err.message); list.innerHTML = "<p class='muted'>কমেন্ট এখন লোড করা যাচ্ছে না।</p>"; });
+  });
 }
 function bindForm(postId){
   var f = document.getElementById("cmtForm"), st = document.getElementById("cmtStatus");
