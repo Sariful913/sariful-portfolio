@@ -3,6 +3,7 @@
     {
       "id": "post1",
       "title": "কীভাবে AI দিয়ে প্রোডাক্ট ভিডিও বানাবেন",
+      "slug": "ai-product-video-guide",
       "category": "Guide • AI Video",
       "excerpt": "বড় বাজেট ছাড়াই নিজের প্রোডাক্টের সিনেমাটিক ভিডিও বানানোর পুরো প্রসেস - টুল বাছাই থেকে প্রথম ৩ সেকেন্ডের হুক পর্যন্ত।",
       "image": "/images/blog-1.jpg",
@@ -11,6 +12,7 @@
     {
       "id": "post2",
       "title": "ফ্রিতে ওয়েবসাইট হোস্টিং করবেন যেভাবে",
+      "slug": "free-website-hosting",
       "category": "Guide • Websites",
       "excerpt": "Netlify দিয়ে সম্পূর্ণ ফ্রিতে নিজের ওয়েবসাইট লাইভ করার ধাপে ধাপে গাইড - খরচ শূন্য, কিন্তু কাজ দেখবে সারা দুনিয়া।",
       "image": "/images/blog-2.jpg",
@@ -19,6 +21,7 @@
     {
       "id": "post3",
       "title": "Meta দিয়ে সোশ্যাল মিডিয়া অটোমেশন কীভাবে করবেন",
+      "slug": "meta-social-media-automation",
       "category": "Guide • Automation",
       "excerpt": "পোস্ট শিডিউল, ইনবক্স অটো-রিপ্লাই আর কমেন্ট অটোমেশন - Meta Business Suite দিয়ে সময় বাঁচানোর পুরো সেটআপ।",
       "image": "/images/blog-3.jpg",
