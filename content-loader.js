@@ -111,6 +111,24 @@
       card.setAttribute("tabindex", "0");
       card.setAttribute("aria-label", (it.title || "Resource") + " - details");
       card.style.cursor = "pointer";
+      /* visible link so people can see the card opens a page */
+      var more = card.querySelector("a.res-more");
+      if(!more){
+        more = document.createElement("a");
+        more.className = "res-more";
+        more.style.cssText = "display:inline-block;margin:6px 0 14px;color:#22D3EE;font-weight:600;font-size:.92rem;text-decoration:none";
+        var meta = card.querySelector(".res-meta");
+        if(meta && meta.parentNode) meta.parentNode.insertBefore(more, meta.nextSibling);
+        else card.appendChild(more);
+      }
+      more.href = page;
+      more.textContent = "বিস্তারিত পড়ুন \u2192";
+      if(h && !h.querySelector("a")){
+        var ha = document.createElement("a");
+        ha.href = page; ha.textContent = h.textContent;
+        ha.style.cssText = "color:inherit;text-decoration:none";
+        h.textContent = ""; h.appendChild(ha);
+      }
       if(!card._pageBound){
         card._pageBound = true;
         card.addEventListener("click", function(e){
