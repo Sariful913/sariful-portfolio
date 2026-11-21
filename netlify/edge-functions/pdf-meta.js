@@ -4,6 +4,7 @@
 function slugify(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
 function fileSlug(it){ return slugify(String(it.pdf_file || "").split("?")[0].split("/").pop().replace(/\.pdf$/i, "")); }
 function slugOf(it, i){ return slugify(it.slug) || fileSlug(it) || slugify(it.title) || ("pdf-" + (i + 1)); }
+function slugList(items){ const used = {}; return items.map((it, i) => { let s = slugOf(it, i); const b = s; let n = 2; while (used[s]) { s = b + "-" + n; n++; } used[s] = 1; return s; }); }
 function attr(s){ return String(s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
 export default async (request, context) => {
@@ -18,7 +19,7 @@ export default async (request, context) => {
     const data = await r.json();
     const items = Array.isArray(data) ? data : (data.resources || []);
     let it = null;
-    items.forEach((x, i) => { if (!it && slugOf(x, i) === want) it = x; });
+    const sl = slugList(items); items.forEach((x, i) => { if (!it && sl[i] === want) it = x; });
     if (!it) return res;
     const title = attr((it.title || "Free PDF") + " - MD Sariful Islam");
     const desc = attr(it.description || "পুরো পোস্ট পড়ুন, PDF দেখুন আর ডাউনলোড করুন।");
