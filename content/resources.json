@@ -1,0 +1,40 @@
+{
+  "resources": [
+    {
+      "title": "AI Video Course",
+      "description": "AI দিয়ে প্রোডাক্ট ভিডিও বানানোর সম্পূর্ণ গাইড - টুল বাছাই, প্রম্পট লেখা, সিনেমাটিক শট, এডিটিং আর অ্যাডে ব্যবহারের পুরো প্রসেস, ধাপে ধাপে বাংলায়।",
+      "kind": "paid",
+      "price": "৳99",
+      "link": "https://wa.me/8801609494024?text=Hi%20Sariful%2C%20I%20want%20to%20buy%20the%20AI%20Video%20Course%20(%E0%A7%B399).",
+      "pdf_file": "",
+      "tag": "Beginner friendly"
+    },
+    {
+      "title": "AI Agent Building Guideline",
+      "description": "নিজের AI এজেন্ট বা অ্যাসিস্ট্যান্ট বানানোর গাইডলাইন - মেমরি, ভয়েস, রিসার্চ আর অটোমেশনসহ পুরো সেটআপ, যেভাবে আমি নিজের অ্যাসিস্ট্যান্ট বানিয়েছি।",
+      "kind": "paid",
+      "price": "৳999",
+      "link": "https://wa.me/8801609494024?text=Hi%20Sariful%2C%20I%20want%20to%20buy%20the%20AI%20Agent%20Building%20Guideline%20(%E0%A7%B3999).",
+      "pdf_file": "",
+      "tag": "Advanced"
+    },
+    {
+      "title": "Facebook Automation Guide",
+      "description": "Meta Business Suite দিয়ে পোস্ট শিডিউল, ইনবক্স অটো-রিপ্লাই আর কমেন্ট অটোমেশন সেটআপের সহজ গাইড - প্রতিদিনের ঘণ্টার পর ঘণ্টা সময় বাঁচান।",
+      "kind": "free",
+      "price": "",
+      "link": "https://drive.google.com/file/d/1BRp4oXQEZ6mQgxa-afR-oj93d7CDXtTz/view?usp=drivesdk",
+      "pdf_file": "",
+      "tag": "Free download"
+    },
+    {
+      "title": "30-Day Content Plan with Claude",
+      "description": "Claude AI দিয়ে পুরো ৩০ দিনের সোশ্যাল মিডিয়া কনটেন্ট সাজানোর আইডিয়া আর রেডি প্রম্পট - এক বসায় পুরো মাসের পোস্ট প্ল্যান তৈরি করুন।",
+      "kind": "free",
+      "price": "",
+      "link": "https://drive.google.com/file/d/1bowfif3WkLK0U0vv_nlw-QyedXe7kfRF/view?usp=drivesdk",
+      "pdf_file": "",
+      "tag": "Free download"
+    }
+  ]
+}
