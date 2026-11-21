@@ -114,10 +114,10 @@ function current(){
 var app = document.getElementById("app");
 
 function showList(items, note){
-  var html = (note ? "<p class='lead'>" + esc(note) + "</p>" : "") + "<h1>ফ্রি রিসোর্স</h1><div class='list'>";
+  var html = (note ? "<p class='lead'>" + esc(note) + "</p>" : "") + "<h1>রিসোর্স</h1><div class='list'>";
   items.forEach(function(it, i){
-    if(it.kind === "paid") return;
-    html += "<a href='/pdf/" + esc(slugOf(it, i)) + "'>" + esc(it.title) + " &rarr;</a>";
+    var label = it.kind === "paid" ? (it.price || "Premium") : "FREE";
+    html += "<a href='/pdf/" + esc(slugOf(it, i)) + "'>" + esc(it.title) + " <span style='color:var(--muted);font-weight:500'>(" + esc(label) + ")</span> &rarr;</a>";
   });
   app.innerHTML = html + "</div>";
 }
@@ -166,6 +166,7 @@ function showItem(it){
     html += "<a class='btn btn-ghost' href='#read'>পুরো PDF পড়ুন</a>";
   }
   html += "</div>";
+  if(it.kind === "paid") html += "<p class='lead' style='font-size:.95rem'>পেমেন্টের পর PDF টি সরাসরি WhatsApp-এ পাঠিয়ে দেওয়া হবে।</p>";
   html += shareBar(it);
 
   if(it.body) html += "<div class='article'>" + render(it.body) + "</div>";

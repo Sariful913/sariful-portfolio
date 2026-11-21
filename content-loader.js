@@ -95,7 +95,29 @@
       var h = card.querySelector("h3");
       if(h) h.textContent = it.title || "";
       var d = card.querySelector("p.bn");
-      if(d) d.textContent = it.description || "";
+      if(d){
+        d.textContent = it.description || "";
+        /* keep cards tidy - the full text is on the resource page */
+        d.style.display = "-webkit-box"; d.style.webkitBoxOrient = "vertical";
+        d.style.webkitLineClamp = "4"; d.style.overflow = "hidden";
+      }
+      /* the whole card opens the resource's own page */
+      var page = "/pdf/" + slugOf(it, idx);
+      card.setAttribute("data-page", page);
+      card.setAttribute("role", "link");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("aria-label", (it.title || "Resource") + " - details");
+      card.style.cursor = "pointer";
+      if(!card._pageBound){
+        card._pageBound = true;
+        card.addEventListener("click", function(e){
+          if(e.target.closest && e.target.closest("a")) return; /* buttons keep their own link */
+          location.href = card.getAttribute("data-page");
+        });
+        card.addEventListener("keydown", function(e){
+          if(e.key === "Enter" && e.target === card) location.href = card.getAttribute("data-page");
+        });
+      }
       var meta = card.querySelectorAll(".res-meta span");
       if(meta.length >= 5 && it.tag) meta[4].textContent = it.tag;
       var a = card.querySelector("a.btn");
@@ -107,7 +129,7 @@
           a.textContent = "Buy via WhatsApp - " + (it.price || "");
         }else{
           a.classList.add("btn-primary");
-          a.href = (it.pdf_file || it.link) ? ("/pdf/" + slugOf(it, idx)) : "#";
+          a.href = page;
           a.removeAttribute("target");
           a.textContent = "Read & Download Free PDF";
         }
