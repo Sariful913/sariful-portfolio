@@ -47,9 +47,11 @@ collections:
             widget: "list"
             fields:
               - {label: "Title", name: "title", widget: "string"}
+              - {label: "Link name / slug (English chhoto hater, jemon: facebook-automation) - link hobe sariful.netlify.app/pdf/ei-nam", name: "slug", widget: "string", required: false}
               - {label: "Description (Bangla)", name: "description", widget: "text"}
               - {label: "Type", name: "kind", widget: "select", options: ["free", "paid"]}
               - {label: "Price (sudhu Paid hole, jemon ৳99)", name: "price", widget: "string", required: false}
               - {label: "Tag (jemon: Beginner friendly / Free download)", name: "tag", widget: "string", required: false}
               - {label: "Link - Free hole Drive link, Paid hole khali rakhun", name: "link", widget: "string", required: false}
               - {label: "Or upload PDF here (Free hole)", name: "pdf_file", widget: "file", required: false}
+              - {label: "Full post (PDF page e dekhabe - paragraph er majhe ek line faka; sub-heading er age ## din)", name: "body", widget: "text", required: false}
