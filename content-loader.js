@@ -69,7 +69,8 @@
   }
 
   function slugify(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
-  function slugOf(it, i){ return slugify(it.slug) || slugify(it.title) || ("pdf-" + (i + 1)); }
+  function fileSlug(it){ var f = String(it.pdf_file || "").split("?")[0].split("/").pop().replace(/\.pdf$/i, ""); return slugify(f); }
+  function slugOf(it, i){ return slugify(it.slug) || fileSlug(it) || slugify(it.title) || ("pdf-" + (i + 1)); }
 
   function buildResources(items){
     var grid = document.querySelector("#resources .grid-2");

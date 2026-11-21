@@ -11,3 +11,8 @@
   from = "/pdf/*"
   to = "/pdf.html"
   status = 200
+
+# Per-PDF link preview (title + description) for Facebook / WhatsApp shares
+[[edge_functions]]
+  path = "/pdf/*"
+  function = "pdf-meta"

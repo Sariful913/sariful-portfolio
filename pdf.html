@@ -43,6 +43,10 @@ h1{font-size:clamp(26px,5vw,38px);line-height:1.3;margin-bottom:12px}
 .viewer iframe{display:block;width:100%;height:75vh;min-height:480px;border:0;background:#fff}
 .cta{margin-top:30px;padding:22px;border-radius:16px;border:1px dashed var(--line);text-align:center;color:var(--muted)}
 .cta strong{color:var(--text)}
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 26px;color:var(--muted);font-size:15px}
+.sh{font-family:Inter,"Hind Siliguri",sans-serif;font-size:14px;font-weight:600;text-decoration:none;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.sh:hover{border-color:var(--cyan);color:var(--cyan)}
+.sh.fb{border-color:rgba(24,119,242,.6)}.sh.wa{border-color:rgba(37,211,102,.6)}.sh.ms{border-color:rgba(0,132,255,.6)}
 .state{text-align:center;padding:60px 20px;color:var(--muted)}
 .list a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);font-weight:600}
 .list a:hover{color:var(--cyan)}
@@ -71,7 +75,8 @@ function slugify(s){
   return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 /* Same rule as content-loader.js: own slug, else English title, else pdf-N */
-function slugOf(it, i){ return slugify(it.slug) || slugify(it.title) || ("pdf-" + (i + 1)); }
+function fileSlug(it){ var f = String(it.pdf_file || "").split("?")[0].split("/").pop().replace(/\.pdf$/i, ""); return slugify(f); }
+function slugOf(it, i){ return slugify(it.slug) || fileSlug(it) || slugify(it.title) || ("pdf-" + (i + 1)); }
 
 /* Body text: blank line = new paragraph, a line starting with "## " = sub-heading */
 function render(body){
@@ -93,7 +98,10 @@ function pdfUrls(it){
   var id = driveId(src);
   if(id) return { view: "https://drive.google.com/file/d/" + id + "/preview",
                   download: "https://drive.google.com/uc?export=download&id=" + id, direct: false };
-  return { view: src, download: src, direct: true };
+  var abs = new URL(src, location.origin).href;
+  var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  return { view: mobile ? ("https://docs.google.com/viewer?embedded=true&url=" + encodeURIComponent(abs)) : abs,
+           download: src, open: abs, direct: true };
 }
 
 function current(){
@@ -114,6 +122,33 @@ function showList(items, note){
   app.innerHTML = html + "</div>";
 }
 
+function shareBar(it){
+  var url = location.origin + location.pathname;
+  var text = (it.title || "") + (it.description ? " - " + it.description : "");
+  var u = encodeURIComponent(url), t = encodeURIComponent(text + "\n" + url);
+  var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  var h = "<div class='share'><span>শেয়ার করুন:</span>";
+  h += "<a class='sh fb' href='https://www.facebook.com/sharer/sharer.php?u=" + u + "' target='_blank' rel='noopener'>Facebook</a>";
+  h += "<a class='sh wa' href='https://wa.me/?text=" + t + "' target='_blank' rel='noopener'>WhatsApp</a>";
+  h += "<a class='sh ms' href='" + (mobile ? ("fb-messenger://share/?link=" + u) : ("https://www.facebook.com/sharer/sharer.php?u=" + u)) + "' target='_blank' rel='noopener'>Messenger</a>";
+  h += "<button class='sh cp' type='button' data-copy='" + esc(url) + "'>লিংক কপি</button>";
+  if(navigator.share) h += "<button class='sh nt' type='button' data-native='1'>আরও...</button>";
+  return h + "</div>";
+}
+
+document.addEventListener("click", function(e){
+  var c = e.target.closest && e.target.closest("[data-copy]");
+  if(c){
+    var v = c.getAttribute("data-copy");
+    var done = function(){ c.textContent = "কপি হয়েছে ✓"; setTimeout(function(){ c.textContent = "লিংক কপি"; }, 2000); };
+    if(navigator.clipboard) navigator.clipboard.writeText(v).then(done, function(){ prompt("লিংক কপি করুন:", v); });
+    else { prompt("লিংক কপি করুন:", v); }
+    return;
+  }
+  var n = e.target.closest && e.target.closest("[data-native]");
+  if(n){ navigator.share({ title: document.title, url: location.origin + location.pathname }).catch(function(){}); }
+});
+
 function showItem(it){
   document.title = (it.title || "PDF") + " - MD Sariful Islam";
   var urls = it.kind === "paid" ? null : pdfUrls(it);
@@ -131,12 +166,13 @@ function showItem(it){
     html += "<a class='btn btn-ghost' href='#read'>পুরো PDF পড়ুন</a>";
   }
   html += "</div>";
+  html += shareBar(it);
 
   if(it.body) html += "<div class='article'>" + render(it.body) + "</div>";
 
   if(urls){
     html += "<div class='viewer' id='read'><div class='viewer-head'><span>" + esc(it.title) + "</span>" +
-            "<a href='" + esc(urls.download) + "'" + (urls.direct ? " download" : "") + " target='_blank' rel='noopener'>ডাউনলোড</a></div>" +
+            (urls.open ? "<a href='" + esc(urls.open) + "' target='_blank' rel='noopener'>নতুন ট্যাবে খুলুন</a>" : "<a href='" + esc(urls.download) + "' target='_blank' rel='noopener'>ডাউনলোড</a>") + "</div>" +
             "<iframe src='" + esc(urls.view) + "' title='" + esc(it.title) + "' loading='lazy' allow='autoplay'></iframe></div>";
   }
 
