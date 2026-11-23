@@ -1,0 +1,3 @@
+# Fallback page rewrites for Cloudflare Pages (the Functions in /functions normally answer first).
+/pdf/*   /pdf    200
+/blog/*  /blog   200
