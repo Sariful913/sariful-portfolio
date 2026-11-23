@@ -5,10 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager - Sariful Portfolio</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Decap CMS (admin panel). Login is handled by Netlify Identity. -->
+  <!-- Decap CMS admin panel. Login is with GitHub (via /api/auth on this same site). -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Uses whatever address the site is opened on, so a new domain needs no code change.
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "Sariful913/sariful-portfolio",
+          branch: "main",
+          base_url: window.location.origin,
+          auth_endpoint: "api/auth"
+        },
+        site_url: window.location.origin,
+        display_url: window.location.origin
+      }
+    });
+  </script>
 </body>
 </html>

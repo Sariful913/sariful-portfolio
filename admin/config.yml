@@ -1,19 +1,25 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Sariful913/sariful-portfolio
   branch: main
+  # admin/index.html sets base_url to the address the site is opened on.
+  # This value is only a fallback - change it if the Cloudflare project name is different.
+  base_url: https://sariful.pages.dev
+  auth_endpoint: api/auth
   commit_messages:
     create: "Create {{collection}} {{slug}}"
     update: "Update {{collection}} {{slug}}"
     delete: "Delete {{collection}} {{slug}}"
-    uploadMedia: "[skip ci] Upload {{path}}"
-    deleteMedia: "[skip ci] Delete {{path}}"
+    uploadMedia: "Upload {{path}}"
+    deleteMedia: "Delete {{path}}"
 
 # Files uploaded from the panel (blog cover images, PDFs)
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-site_url: https://sariful.netlify.app
-display_url: https://sariful.netlify.app
+# Fallback only - admin/index.html replaces these with the current site address.
+site_url: https://sariful.pages.dev
+display_url: https://sariful.pages.dev
 locale: "en"
 
 collections:
@@ -30,7 +36,7 @@ collections:
             fields:
               - {label: "Post ID (post1, post2... - notun post e porer number din)", name: "id", widget: "string", required: false}
               - {label: "Title", name: "title", widget: "string"}
-              - {label: "Link name / slug (English chhoto hater, jemon: ai-video-guide) - link hobe sariful.netlify.app/blog/ei-nam", name: "slug", widget: "string", required: false}
+              - {label: "Link name / slug (English chhoto hater, jemon: ai-video-guide) - link hobe <site>/blog/ei-nam", name: "slug", widget: "string", required: false}
               - {label: "Category (jemon: Guide • AI Video)", name: "category", widget: "string"}
               - {label: "Short excerpt (card e dekhabe)", name: "excerpt", widget: "text"}
               - {label: "Cover image", name: "image", widget: "image"}
@@ -48,7 +54,7 @@ collections:
             widget: "list"
             fields:
               - {label: "Title", name: "title", widget: "string"}
-              - {label: "Link name / slug (English chhoto hater, jemon: facebook-automation) - link hobe sariful.netlify.app/pdf/ei-nam", name: "slug", widget: "string", required: false}
+              - {label: "Link name / slug (English chhoto hater, jemon: facebook-automation) - link hobe <site>/pdf/ei-nam", name: "slug", widget: "string", required: false}
               - {label: "Description (Bangla)", name: "description", widget: "text"}
               - {label: "Type", name: "kind", widget: "select", options: ["free", "paid"]}
               - {label: "Price (sudhu Paid hole, jemon ৳99)", name: "price", widget: "string", required: false}
