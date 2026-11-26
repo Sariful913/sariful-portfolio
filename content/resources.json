@@ -76,6 +76,17 @@
       "pdf_file": "/images/uploads/free-portfolio-cloudflare-guide-video02.pdf",
       "description": "কোডিং ছাড়া, হোস্টিং খরচ ছাড়া আর কার্ড ছাড়া Cloudflare Pages দিয়ে নিজের পোর্টফোলিও ওয়েবসাইট অনলাইনে তোলার ধাপগুলো - ভিডিওর সাথের ফ্রি বাংলা গাইড।",
       "body": "এই গাইডে কী আছে\nCloudflare Pages দিয়ে একদম ফ্রিতে নিজের পোর্টফোলিও ওয়েবসাইট অনলাইনে তোলার সহজ ধাপগুলো, ভিডিওর সাথে মিলিয়ে।\n\nসাইটের ফাইল তৈরি\nAI দিয়ে সাইটের ফাইল বানানো, আর index.html ফোল্ডারের একদম উপরে রাখার নিয়ম।\n\nফ্রি অ্যাকাউন্ট আর আপলোড\nCloudflare-এ ফ্রি অ্যাকাউন্ট খোলা, Workers & Pages থেকে ড্র্যাগ-অ্যান্ড-ড্রপে সাইট আপলোড, আর নিজের ফ্রি pages.dev লিংক পাওয়া।\n\nআপডেট আর সীমা\nCreate new deployment দিয়ে সাইট আপডেট করা, ফ্রি প্ল্যানে কী কী পাবেন, আর সাধারণ সমস্যার সমাধান।"
+    },
+    {
+      "title": "ফেসবুক পেজে অটো-রিপ্লাই - কমেন্ট-টু-মেসেজ চালু করা",
+      "slug": "facebook-auto-reply-comment-to-message-guide",
+      "kind": "free",
+      "tag": "Free Download",
+      "price": "",
+      "link": "",
+      "pdf_file": "/images/uploads/facebook-auto-reply-comment-to-message-guide.pdf",
+      "description": "কমেন্টে 'দাম কত?' লিখলেই কাস্টমারের ইনবক্সে উত্তর চলে যাবে - Meta Business Suite দিয়ে ফ্রিতে, কোডিং ছাড়াই, শুধু কম্পিউটার দিয়ে। Comment to message, Auto reply, Away message আর কমন প্রশ্নের উত্তর - ধাপে ধাপে সহজ বাংলায়।",
+      "body": "এই গাইডে শিখবেন কীভাবে Meta Business Suite-এর Automations দিয়ে ফেসবুক পেজে অটো-রিপ্লাই চালু করবেন। ধাপ ১: Comment to message অটোমেশন বানানো - পোস্ট বাছাই, কীওয়ার্ড লেখা (সর্বোচ্চ ৫টা), ইনবক্সের প্রাইভেট মেসেজ আর পাবলিক রিপ্লাই লেখা। ধাপ ২: Auto reply, Away message, Frequently asked questions আর Custom keywords চালু করা। আরও আছে: একটা কমেন্টে একটাই প্রাইভেট মেসেজ, ১,০০০ অক্ষরের সীমা, অটোমেশন অন থাকতে হবে - আর নিজের পেজে পরীক্ষা করার নিয়ম। পুরোটা ফ্রি, কোডিং লাগে না, তবে সেটআপ শুধু কম্পিউটার দিয়ে করা যায়, মোবাইল অ্যাপে নয়। MD Sariful Islam-এর নিজের পেজের 'Meta Agent' কীওয়ার্ডের আসল উদাহরণও আছে।"
     }
   ]
 }
