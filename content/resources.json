@@ -87,6 +87,16 @@
       "pdf_file": "/images/uploads/facebook-auto-reply-comment-to-message-guide.pdf",
       "description": "কমেন্টে 'দাম কত?' লিখলেই কাস্টমারের ইনবক্সে উত্তর চলে যাবে - Meta Business Suite দিয়ে ফ্রিতে, কোডিং ছাড়াই, শুধু কম্পিউটার দিয়ে। Comment to message, Auto reply, Away message আর কমন প্রশ্নের উত্তর - ধাপে ধাপে সহজ বাংলায়।",
       "body": "এই গাইডে শিখবেন কীভাবে Meta Business Suite-এর Automations দিয়ে ফেসবুক পেজে অটো-রিপ্লাই চালু করবেন। ধাপ ১: Comment to message অটোমেশন বানানো - পোস্ট বাছাই, কীওয়ার্ড লেখা (সর্বোচ্চ ৫টা), ইনবক্সের প্রাইভেট মেসেজ আর পাবলিক রিপ্লাই লেখা। ধাপ ২: Auto reply, Away message, Frequently asked questions আর Custom keywords চালু করা। আরও আছে: একটা কমেন্টে একটাই প্রাইভেট মেসেজ, ১,০০০ অক্ষরের সীমা, অটোমেশন অন থাকতে হবে - আর নিজের পেজে পরীক্ষা করার নিয়ম। পুরোটা ফ্রি, কোডিং লাগে না, তবে সেটআপ শুধু কম্পিউটার দিয়ে করা যায়, মোবাইল অ্যাপে নয়। MD Sariful Islam-এর নিজের পেজের 'Meta Agent' কীওয়ার্ডের আসল উদাহরণও আছে।"
+    },
+    {
+      "title": "Claude দিয়ে মোশন ভিডিও - টাইপ করলেই এডিট - ভিডিও গাইড",
+      "slug": "claude-ai-video-editing-guide",
+      "kind": "free",
+      "tag": "Free Download",
+      "price": "",
+      "link": "",
+      "pdf_file": "/images/uploads/claude-ai-video-editing-guide.pdf",
+      "description": "টাইমলাইন টানা আর ক্লিপ কাটা ছাড়াই Claude Code আর Remotion দিয়ে টাইপ করেই ৩০ সেকেন্ডের মোশন রিল বানানোর ধাপগুলো - ভিডিওর সাথের ফ্রি বাংলা গাইড।"
     }
   ]
 }
