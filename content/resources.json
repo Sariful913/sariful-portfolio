@@ -1,6 +1,16 @@
 {
   "resources": [
     {
+      "title": "Muse AI এর ১০টি স্কিল - ফ্রি বাংলা গাইড",
+      "slug": "muse-ai-10-skills-guide",
+      "kind": "free",
+      "tag": "Free Download",
+      "price": "",
+      "link": "",
+      "pdf_file": "/images/uploads/muse-ai-10-skills-guide.pdf",
+      "description": "Muse AI এজেন্টের ১০টি দরকারি স্কিল ধাপে ধাপে, ভিডিওসহ ফ্রি পিডিএফ গাইড।"
+    },
+    {
       "title": "AI Video Course",
       "description": "AI দিয়ে প্রোডাক্ট ভিডিও বানানোর সম্পূর্ণ গাইড - টুল বাছাই, প্রম্পট লেখা, সিনেমাটিক শট, এডিটিং আর অ্যাডে ব্যবহারের পুরো প্রসেস, ধাপে ধাপে বাংলায়।",
       "kind": "paid",
