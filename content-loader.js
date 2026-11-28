@@ -8,7 +8,20 @@
 
   function paragraphs(body){
     return esc(body).split(/\n\s*\n/).filter(function(p){ return p.trim(); })
-      .map(function(p){ return "<p>" + esc(p).trim().replace(/\n/g, "<br>") + "</p>"; }).join("");
+      .map(function(p){
+        p = p.trim();
+        var y = p.match(/^(?:\[youtube:\s*([A-Za-z0-9_-]{11})\s*\]|https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})\S*)$/);
+        if(y) return "<div style='position:relative;width:100%;aspect-ratio:16/9;margin:6px 0 18px;border-radius:12px;overflow:hidden;background:#000'><iframe style='position:absolute;inset:0;width:100%;height:100%;border:0' src='https://www.youtube-nocookie.com/embed/" + (y[1] || y[2]) + "' title='YouTube video' loading='lazy' allowfullscreen></iframe></div>";
+        var k = p.match(/^\[(pdf|button):\s*([^|\]]+?)\s*(?:\|\s*([^\]]+?)\s*)?\]$/);
+        if(k){
+          var u = k[2]; if(k[1] === "pdf" && u.indexOf("/") !== 0 && u.indexOf("http") !== 0) u = "/pdf/" + u;
+          if(!/^(\/[^\/]|https:\/\/)/.test(u)) return "";
+          var l = (k[3] || (k[1] === "pdf" ? "ফ্রি PDF গাইড ডাউনলোড করুন" : "বিস্তারিত দেখুন")).replace(/[<>&"']/g, "");
+          return "<p><a href='" + u.replace(/'/g, "%27") + "' style='display:inline-block;padding:11px 18px;border-radius:12px;background:#22d3ee;color:#06121f;font-weight:700;text-decoration:none'>" + l + "</a></p>";
+        }
+        if(p.indexOf("## ") === 0) return "<h3>" + p.slice(3).replace(/[<>]/g, "") + "</h3>";
+        return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
+      }).join("");
   }
 
   /* ---------- Blog reader (own copy, uses the modal already on the page) ---------- */
