@@ -38,6 +38,11 @@ h1{font-size:clamp(26px,5vw,38px);line-height:1.3;margin-bottom:12px}
 .article{font-size:17.5px}
 .article p{margin-bottom:16px}
 .article h2{font-size:22px;margin:26px 0 10px;color:var(--cyan)}
+.yt{position:relative;width:100%;aspect-ratio:16/9;margin:6px 0 22px;border-radius:14px;overflow:hidden;background:#000}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.cta{margin:6px 0 22px}
+.cta-btn{display:inline-block;padding:12px 20px;border-radius:12px;background:var(--cyan);color:#06121f;font-weight:700;text-decoration:none}
+.cta-btn:hover{opacity:.9}
 .viewer{margin-top:28px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0b1424}
 .viewer-head{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-family:Inter,sans-serif;font-size:14px;color:var(--muted);border-bottom:1px solid var(--line)}
 .viewer iframe{display:block;width:100%;height:75vh;min-height:480px;border:0;background:#fff}
@@ -107,10 +112,28 @@ function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(
 function slugify(s){ return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
 function slugOf(p, i){ return slugify(p.slug) || slugify(p.id) || slugify(p.title) || ("post-" + (i + 1)); }
 function slugList(items){ var used = {}; return items.map(function(it, i){ var s = slugOf(it, i), b = s, n = 2; while(used[s]){ s = b + "-" + n; n++; } used[s] = 1; return s; }); }
+function ytId(s){
+  var m = String(s).match(/^(?:\[youtube:\s*([A-Za-z0-9_-]{11})\s*\]|https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})\S*)$/);
+  return m ? (m[1] || m[2]) : "";
+}
+function embedBlock(p){
+  var id = ytId(p);
+  if(id) return "<div class='yt'><iframe src='https://www.youtube-nocookie.com/embed/" + id + "' title='YouTube video' loading='lazy' allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>";
+  var m = p.match(/^\[(pdf|button):\s*([^|\]]+?)\s*(?:\|\s*([^\]]+?)\s*)?\]$/);
+  if(m){
+    var url = m[2];
+    if(m[1] === "pdf" && url.indexOf("/") !== 0 && url.indexOf("http") !== 0) url = "/pdf/" + url;
+    if(!/^(\/[^\/]|https:\/\/)/.test(url)) return "";
+    var label = m[3] || (m[1] === "pdf" ? "ফ্রি PDF গাইড ডাউনলোড করুন" : "বিস্তারিত দেখুন");
+    return "<p class='cta'><a class='cta-btn' href='" + esc(url) + "'" + (url.indexOf("http") === 0 ? " target='_blank' rel='noopener'" : "") + ">" + (m[1] === "pdf" ? "&#11015; " : "") + esc(label) + "</a></p>";
+  }
+  return "";
+}
 function render(body){
   return String(body || "").split(/\n\s*\n/).filter(function(p){ return p.trim(); }).map(function(p){
     p = p.trim();
     if(p.indexOf("## ") === 0) return "<h2>" + esc(p.slice(3)) + "</h2>";
+    var e = embedBlock(p); if(e) return e;
     return "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>";
   }).join("");
 }
