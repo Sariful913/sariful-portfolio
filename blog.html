@@ -65,6 +65,8 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px}
 .fform input:focus,.fform textarea:focus{outline:none;border-color:var(--cyan)}
 .fstat{font-size:15px;color:var(--cyan)}.fstat.err{color:#fca5a5}
 .list a small{display:block;color:var(--muted);font-weight:500}
+.cnt{display:block;color:var(--muted);font-family:"Hind Siliguri",Inter,sans-serif;font-size:14px;font-weight:500;margin-top:2px}
+.cnt-bar{color:var(--muted);font-size:15px;margin:-10px 0 20px}
 </style>
 </head>
 <body>
@@ -79,6 +81,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:20px}
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="/counter.js"></script>
 <script>
 (function(){
 "use strict";
@@ -121,9 +124,10 @@ function showList(posts, note){
   var sl = slugList(posts);
   var html = (note ? "<p class='lead'>" + esc(note) + "</p>" : "") + "<h1>ব্লগ</h1><div class='list'>";
   posts.forEach(function(p, i){
-    html += "<a href='/blog/" + esc(sl[i]) + "'>" + esc(p.title) + " &rarr;" + (p.excerpt ? "<small>" + esc(p.excerpt) + "</small>" : "") + "</a>";
+    html += "<a href='/blog/" + esc(sl[i]) + "'>" + esc(p.title) + " &rarr;" + (p.excerpt ? "<small>" + esc(p.excerpt) + "</small>" : "") + "<span class='cnt' data-mode='short' data-ck='blog:" + esc(sl[i]) + "' style='display:none'></span></a>";
   });
   app.innerHTML = html + "</div>";
+  if(window.siteCounter) window.siteCounter.fill(app);
 }
 
 function shareBar(p){
@@ -195,13 +199,15 @@ function bindForm(postId){
   });
 }
 
-function showPost(p, i){
+function showPost(p, i, slug){
+  var ck = "blog:" + slug;
   document.title = (p.title || "Blog") + " - MD Sariful Islam";
   var postId = p.id || ("post" + (i + 1));
   var html = "";
   if(p.category) html += "<span class='tag'>" + esc(p.category) + "</span>";
   html += "<h1>" + esc(p.title) + "</h1>";
   if(p.excerpt) html += "<p class='lead'>" + esc(p.excerpt) + "</p>";
+  html += "<div class='cnt-bar' data-ck='" + esc(ck) + "' style='display:none'></div>";
   html += shareBar(p);
   if(p.image) html += "<img class='cover' src='" + esc(p.image) + "' alt='" + esc(p.title) + "'>";
   html += "<div class='article'>" + render(p.body) + "</div>";
@@ -215,6 +221,7 @@ function showPost(p, i){
   html += "<div class='cta'><strong>আপনার ব্যবসার জন্য AI ভিডিও বা AI এজেন্ট লাগবে?</strong><br>" +
           "<a class='btn btn-wa' style='margin-top:12px' href='https://wa.me/" + WA + "' target='_blank' rel='noopener'>WhatsApp-এ কথা বলুন</a></div>";
   app.innerHTML = html;
+  if(window.siteCounter) window.siteCounter.view(ck);
   loadComments(postId);
   bindForm(postId);
 }
@@ -228,7 +235,7 @@ fetch("/content/blog-posts.json", {cache: "no-store"}).then(function(r){
   if(!want){ showList(posts); return; }
   var sl = slugList(posts), idx = -1;
   sl.forEach(function(s, i){ if(idx < 0 && s === want) idx = i; });
-  if(idx >= 0) showPost(posts[idx], idx);
+  if(idx >= 0) showPost(posts[idx], idx, sl[idx]);
   else showList(posts, "এই লিংকের পোস্ট পাওয়া যায়নি - নিচের তালিকা থেকে বেছে নিন।");
 }).catch(function(){
   app.innerHTML = "<div class='state'>এখন লোড করা যাচ্ছে না। একটু পরে আবার চেষ্টা করুন, অথবা <a href='/#blog'>সাইটে যান</a>।</div>";

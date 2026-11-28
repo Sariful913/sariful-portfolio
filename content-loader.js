@@ -53,6 +53,7 @@
       var ex = card.querySelector(".blog-body p.bn");
       if(ex) ex.textContent = post.excerpt || "";
       var page = "/blog/" + blogSlugs[i];
+      setCounter(card, ex || h, "blog:" + blogSlugs[i], false);
       var btn = card.querySelector("[data-open-post]");
       if(btn){
         var fresh = btn.cloneNode(true); /* drops the old built-in listener (modal) */
@@ -143,6 +144,7 @@
         if(meta && meta.parentNode) meta.parentNode.insertBefore(more, meta.nextSibling);
         else card.appendChild(more);
       }
+      setCounter(card, more, "pdf:" + slugs[idx], it.kind !== "paid");
       more.href = page;
       more.textContent = "বিস্তারিত পড়ুন \u2192";
       if(h && !h.querySelector("a")){
@@ -182,6 +184,36 @@
       var all = grid.querySelectorAll(".res-card");
       all[all.length - 1].remove();
     }
+  }
+
+  /* public read / download counter line on each card (numbers filled by /counter.js) */
+  function setCounter(card, after, key, withDl){
+    var el = card.querySelector(".site-cnt");
+    if(!el){
+      el = document.createElement("div");
+      el.className = "site-cnt";
+      el.style.cssText = "display:none;color:#9DB4C8;font-size:.88rem;font-weight:500;margin:4px 0 8px";
+      if(after && after.parentNode) after.parentNode.insertBefore(el, after.nextSibling);
+      else card.appendChild(el);
+    }
+    el.setAttribute("data-ck", key);
+    el.setAttribute("data-dl", withDl ? "1" : "0");
+    el.setAttribute("data-mode", "short");
+    el.style.display = "none";
+    el.textContent = "";
+    fillCounters();
+  }
+  var counterTimer = null;
+  function fillCounters(){
+    clearTimeout(counterTimer);
+    counterTimer = setTimeout(function(){
+      if(window.siteCounter){ window.siteCounter.fill(document); return; }
+      if(document.getElementById("site-counter-js")) return;
+      var sc = document.createElement("script");
+      sc.id = "site-counter-js"; sc.src = "/counter.js";
+      sc.onload = function(){ if(window.siteCounter) window.siteCounter.fill(document); };
+      document.head.appendChild(sc);
+    }, 50);
   }
 
   function loadJSON(url){
